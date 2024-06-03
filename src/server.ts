@@ -10,13 +10,13 @@ async function main() {
   
     app.listen(config.port, () => {
         console.log(`http://localhost:${process.env.PORT}`)
-      })
+      });
    }catch(error){
     console.log(error);
 
    }
   }
 
-main()
+main();
 
 
