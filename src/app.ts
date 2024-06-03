@@ -13,7 +13,7 @@ app.use(cors());
 
 
 // application routes
-app.use('/api/ph-university/students', StudentRoutes);
+app.use('/api/ph-university', StudentRoutes);
 
 
 
