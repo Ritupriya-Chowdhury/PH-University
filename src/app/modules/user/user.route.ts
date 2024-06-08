@@ -1,12 +1,9 @@
-// import express from 'express'
+import express from 'express';
+import { UserControllers } from './user.controller';
+
+const router = express.Router();
+
+router.post('/create-user', UserControllers.createStudent);
 
 
-// const router=express.Router()
-
-
-// // post user route
-// router.post('/user',User.createProducts);
-
-
-
-// export const UserRoutes= router;
+export const UserRoutes=router;

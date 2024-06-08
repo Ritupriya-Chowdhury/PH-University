@@ -1,32 +1,40 @@
+import { NextFunction, Request, Response } from "express";
+import { UserServices } from "./user.service";
+import sendResponse from "../../utils/sendResponse";
+import httpStatus from "http-status";
 
-// import { Request, Response } from "express";
-// import { UserValidation } from "./user.validation";
-// import { UserServices } from "./user.service";
-
-
-
-// const createUsers = async (req: Request, res: Response) => {
-//     try {
-
+const createStudent = async (
+  req: Request, 
+  res: Response,
+  next:NextFunction
+) => {
+    try {
+      const { password,student: studentData } = req.body;
+  
  
-//     const {password, student: StudentData} = req.body;
+      const result = await UserServices.createStudentIntoDB(
+        password,
+        studentData 
+      );
+  
+      
 
-    
-//         const result = await UserServices.newUsersIntoDB(password,StudentData);
+       sendResponse(res,{
+        statusCode: httpStatus.OK,
+        success: true,
+        message:'Student is created successfully',
+        data:result
 
-//         // Send responses
-//         sendResponse(res, {
-//             statusCode: httpStatus.OK,
-//             success: true,
-//             message: 'Student is created succesfully',
-//             data: result,
-//           });
-//         } catch (err) {
-//         console.error(err);
-//         res.status(500).json({
-//             success: false,
-//             message: "Failed to create product.",
-           
-//         });
-//     }
-// };
+
+       });
+
+    } catch (err: any) {
+      next(err)
+     }
+  };
+
+
+  export const UserControllers={
+    createStudent
+
+  }

@@ -1,6 +1,8 @@
-import express, {Application, Request, Response} from 'express'
+import express, {Application, NextFunction, Request, Response} from 'express'
 import cors from 'cors'
-import { StudentRoutes } from './app/modules/student/student.route';
+import globalErrorHandler from './app/middlewares/globalErrorhandler';
+import notFound from './app/middlewares/notFound';
+import router from './app/routes';
 
 
 
@@ -13,8 +15,8 @@ app.use(cors());
 
 
 // application routes
-app.use('/api/ph-university', StudentRoutes);
-
+// student route
+app.use('/api/ph-university', router);
 
 
 const getController=(req:Request, res:Response) => {
@@ -23,5 +25,11 @@ const getController=(req:Request, res:Response) => {
 
 
 app.get('/', getController);
+
+app.use(globalErrorHandler);
+
+//Not Found route
+app.use(notFound);
+
 
 export default app;
