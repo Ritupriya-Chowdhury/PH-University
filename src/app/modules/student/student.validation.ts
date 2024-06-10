@@ -31,7 +31,7 @@ const  guardianZodSchema = z.object({
   });
   
   // Define the Student schema
-  export const studentZodSchema =z.object({
+  export const studentZodSchema = z.object({
     body: z.object({
       password: z.string().max(20),
       student: z.object({
@@ -44,7 +44,7 @@ const  guardianZodSchema = z.object({
         bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
         presentAddress: z.string(),
         permanentAddress: z.string(),
-        guardian:  guardianZodSchema,
+        guardian: guardianZodSchema,
         localGuardian: localGuardianZodSchema,
         admissionSemester: z.string(),
         profileImg: z.string(),
@@ -52,6 +52,6 @@ const  guardianZodSchema = z.object({
     }),
   });
   
-  export const studentValidations={ 
+  export const studentValidations = {
     studentZodSchema,
   };

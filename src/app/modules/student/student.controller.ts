@@ -25,7 +25,7 @@ const getAllStudents =catchAsync (async (req,res,next) => {
 
 // code for get one student
 const getOneStudent =catchAsync (async (req,res,next) => {
-
+  const { id } = req.params;
    
   const result = await StudentServices.getAllStudentsFromDB();
   sendResponse(res,{
