@@ -1,3 +1,4 @@
+import { Schema,Types } from "mongoose";
 import { academicSemesterNameCodeMapper } from "./academicSemester.constant";
 import { TAcademicSemester, TAcademicSemesterNameCodeMapper} from "./academicSemester.interface";
 import { AcademicSemester } from "./academicSemester.model";
@@ -24,7 +25,7 @@ const createAcademicSemesterIntoDB = async (payload: TAcademicSemester) => {
   };
   
   const updateAcademicSemesterIntoDB = async (
-    id: string,
+    id:string,
     payload: Partial<TAcademicSemester>,
   ) => {
     if (

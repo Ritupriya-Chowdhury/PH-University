@@ -21,12 +21,12 @@ router.post(
 router.get('/', AcademicSemesterControllers.getAllAcademicSemesters);
 
 router.get(
-    '/:_id',
+    '/:id',
     AcademicSemesterControllers.getSingleAcademicSemester,
   );
   
   router.patch(
-    '/:_id',
+    '/:id',
     validateRequest(
       AcademicSemesterValidations.updateAcademicSemesterValidationSchema,
     ),
