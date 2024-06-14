@@ -35,10 +35,12 @@ const createAcademicSemesterIntoDB = async (payload: TAcademicSemester) => {
     ) {
       throw new Error('Invalid Semester Code');
     }
+    
   
-    const result = await AcademicSemester.findOneAndUpdate({ _id: id }, payload, {
+    const result = await AcademicSemester.findOneAndUpdate({_id: id }, payload, {
       new: true,
     });
+    
     return result;
   };
   

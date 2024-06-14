@@ -6,6 +6,8 @@ import {
   TStudent,
   TUserName,
 } from './student.interface';
+import AppError from '../../error/AppError';
+import httpStatus from 'http-status';
 
 const userNameSchema = new Schema<TUserName>({
   firstName: {
@@ -138,10 +140,15 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       type: Schema.Types.ObjectId,
       ref: 'AcademicSemester',
     },
+    academicDepartment: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicDepartment',
+    },
     isDeleted: {
       type: Boolean,
       default: false,
     },
+    
   },
   {
     toJSON: {
@@ -149,7 +156,6 @@ const studentSchema = new Schema<TStudent, StudentModel>(
     },
   },
 );
-
 
 // virtual
 studentSchema.virtual('fullName').get(function () {
@@ -174,8 +180,28 @@ studentSchema.pre('aggregate', function (next) {
 
 //creating a custom static method
 studentSchema.statics.isUserExists = async function (id: string) {
-  const existingUser = await Student.findOne({ id });
+  const existingUser = await Student.findOne({id: id });
   return existingUser;
 };
+
+
+// studentSchema.pre('findOne',async function (next){
+//   const query=this.getQuery();
+//   console.log(query);
+//   const isStudentExist=await Student.findOne
+//   ({
+//     query
+//   });
+
+// if(!isStudentExist){
+//   throw new AppError(
+//     httpStatus.NOT_FOUND,
+//     'This Student does not exist! ',);
+// }
+// next();
+
+// });
+
+
 
 export const Student = model<TStudent, StudentModel>('Student', studentSchema);

@@ -47,11 +47,12 @@ const  guardianZodSchema = z.object({
         guardian: guardianZodSchema,
         localGuardian: localGuardianZodSchema,
         admissionSemester: z.string(),
+        academicDepartment: z.string(),
         profileImg: z.string(),
       }),
     }),
   });
   
-  export const studentValidations = {
+  export const studentValidation = {
     studentZodSchema,
   };

@@ -27,7 +27,7 @@ const getAllStudents =catchAsync (async (req,res,next) => {
 const getOneStudent =catchAsync (async (req,res,next) => {
   const { id } = req.params;
    
-  const result = await StudentServices.getAllStudentsFromDB();
+  const result = await StudentServices. getSingleStudentFromDB(id);
   sendResponse(res,{
     statusCode: httpStatus.OK,
     success: true,
@@ -36,6 +36,7 @@ const getOneStudent =catchAsync (async (req,res,next) => {
 
 
    });
+   
 
   
 });
