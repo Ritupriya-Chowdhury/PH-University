@@ -41,24 +41,37 @@ const getOneStudent =catchAsync (async (req,res,next) => {
   
 });
 // code for delete product
-const deleteStudent =catchAsync (async (req,res,next) => {
+const updateStudent = catchAsync(async (req, res) => {
+  const { studentId } = req.params;
+  const { student } = req.body;
+  const result = await StudentServices.updateStudentIntoDB(studentId, student);
 
-   
-  const result = await StudentServices.getAllStudentsFromDB();
-  sendResponse(res,{
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message:'Student is deleted successfully',
-    data:result
+    message: 'Student is updated successfully',
+    data: result,
+  });
+});
 
 
-   });
 
-  
+// code for delete product
+const deleteStudent = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await StudentServices.deleteStudentFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student is deleted successfully',
+    data: result,
+  });
 });
 
 export const StudentControllers = {
   getAllStudents,
   getOneStudent,
   deleteStudent,
+  updateStudent
 };
