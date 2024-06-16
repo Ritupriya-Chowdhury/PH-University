@@ -6,7 +6,7 @@ import { AcademicSemester } from './../academicSemester/academicSemester.model';
 import { TUser } from './user.interface';
 import { User } from './user.model';
 import { generateStudentId } from './user.utils';
-import AppError from '../../error/AppError';
+import AppError from '../../errors/AppError';
 import httpStatus from 'http-status';
 
 const createStudentIntoDB = async (password: string, payload: TStudent) => {
@@ -57,10 +57,10 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
     await session.endSession();
 
     return newStudent;
-  } catch (err) {
+  } catch (err:any) {
     await session.abortTransaction();
     await session.endSession();
-    throw new Error('Failed to create student');
+    throw new Error(err);
   }
 };
 

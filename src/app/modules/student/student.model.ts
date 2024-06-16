@@ -6,7 +6,7 @@ import {
   TStudent,
   TUserName,
 } from './student.interface';
-import AppError from '../../error/AppError';
+import AppError from '../../errors/AppError';
 import httpStatus from 'http-status';
 
 const userNameSchema = new Schema<TUserName>({
@@ -160,7 +160,7 @@ const studentSchema = new Schema<TStudent, StudentModel>(
 
 // virtual
 studentSchema.virtual('fullName').get(function () {
-  return this.name.firstName + this.name.middleName + this.name.lastName;
+  return this.name?.firstName + this.name?.middleName + this.name?.lastName;
 });
 
 // Query Middleware
