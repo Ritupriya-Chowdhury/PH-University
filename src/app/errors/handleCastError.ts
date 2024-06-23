@@ -20,3 +20,5 @@ const handleCastError= (
     };
     
 
+    export default handleCastError;
+

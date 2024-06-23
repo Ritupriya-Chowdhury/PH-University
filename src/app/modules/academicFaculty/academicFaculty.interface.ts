@@ -1,7 +1,5 @@
 export type TAcademicFaculty = {
-    name: string;
-   
-  };
-
+  name: string;
+};
 
 
